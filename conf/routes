@@ -2,5 +2,6 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+GET     /cacheSize                  controllers.HomeController.cacheSize
 GET     /:group                     controllers.HomeController.index(group: String)
 GET     /ws/:group                  controllers.HomeController.ws(group: String)

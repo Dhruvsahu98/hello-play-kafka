@@ -8,7 +8,7 @@
         (function() {
             var websocketUrl = "@wsUrl";
             var websocket = new WebSocket(websocketUrl);
-            var count = 0;
+            var count = 1;
 
             websocket.onmessage = function(event) {
                 var out = document.getElementById("out");
