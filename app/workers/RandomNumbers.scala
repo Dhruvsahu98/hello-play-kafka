@@ -16,16 +16,15 @@ object RandomNumbers extends App {
   val app = GuiceApplicationBuilder(configuration = config).build()
 
   val kafka = app.injector.instanceOf[Kafka]
+  val kafkaSink = kafka.sink
 
-  val topic = kafka.maybePrefix.getOrElse("") + "RandomNumbers"
+  val topic = "RandomNumbers"
 
   val tickSource = Source.tick(Duration.Zero, 500.milliseconds, Unit).map(_ => Random.nextInt().toString)
 
-  kafka.sink.map { kafkaSink =>
-    tickSource
-      .map(new ProducerRecord[String, String](topic, _))
-      .to(kafkaSink)
-      .run()(app.materializer)
-  }
+  tickSource
+    .map(new ProducerRecord[String, String](topic, _))
+    .to(kafkaSink)
+    .run()(app.materializer)
 
 }

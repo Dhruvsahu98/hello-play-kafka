@@ -6,6 +6,5 @@ scalaVersion := "2.12.4"
 
 libraryDependencies ++= Seq(
   guice,
-  "com.typesafe.akka" %% "akka-stream-kafka" % "0.19",
-  "com.heroku.sdk" % "env-keystore" % "1.0.2"
+  "com.typesafe.akka" %% "akka-stream-kafka" % "0.19"
 )

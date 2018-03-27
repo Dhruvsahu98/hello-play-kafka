@@ -2,5 +2,5 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                           controllers.HomeController.index
-GET     /ws                         controllers.HomeController.ws
+GET     /:group                     controllers.HomeController.index(group: String)
+GET     /ws/:group                  controllers.HomeController.ws(group: String)

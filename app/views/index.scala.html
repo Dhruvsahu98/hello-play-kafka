@@ -5,11 +5,26 @@
     <head>
         <title>Hello Play Kafka</title>
         <script>
-            var websocket = new WebSocket("@wsUrl");
+        (function() {
+            var websocketUrl = "@wsUrl";
+            var websocket = new WebSocket(websocketUrl);
+            var count = 0;
+
             websocket.onmessage = function(event) {
                 var out = document.getElementById("out");
-                out.textContent = event.data;
+                out.textContent = count + ": " + event.data;
+                console.log(count + ": " + event.data);
+                count++;
             }
+
+            websocket.onerror = function(event) {
+                console.error("Error:", event);
+            }
+
+            websocket.onopen = function(event) {
+                console.log("Websocket open:", websocketUrl);
+            }
+        })();
         </script>
     </head>
     <body>
